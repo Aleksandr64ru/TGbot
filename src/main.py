@@ -22,7 +22,7 @@ async def handler(event: dict, context):
     update_data = json.loads(body) if body else {}
     await dp.feed_update(
         bot,
-        Update.model_validate{update_data},
+        Update.model_validate(update_data),
     )
     
     

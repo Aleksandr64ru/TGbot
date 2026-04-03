@@ -15,7 +15,7 @@ dp = Dispatcher()
 
 @dp.message(Command("start"))
 async def handle_start(message: Message):
-    await message.answer("Hello!")
+    await message.answer("Hello!!")
     
 async def handler(event: dict, context):
     body: str = event["body"]
@@ -34,3 +34,4 @@ async def main():
     
 if __name__ == "__main__":
     asyncio.run(main())
+    

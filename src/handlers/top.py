@@ -1,4 +1,5 @@
 import aiohttp
+import asyncio
 from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command
@@ -14,7 +15,8 @@ async def handle_top(message: Message):
         "order": "market_cap_desc",
         "per_page": 10,
         "page": 1,
-        "sparkline": "false"
+        "sparkline": "false",
+        "price_change_percentage": "24h"
     }
 
     async with aiohttp.ClientSession() as session:
@@ -28,13 +30,15 @@ async def handle_top(message: Message):
         symbol = coin["symbol"].upper()
         price = round(coin["current_price"], 2)
         change = coin.get("price_change_percentage_24h", 0)
-        
-        if change >= 0:
-            trend = "🟢"
-        else:
-            trend = "🔴"
 
+        trend = "🟢" if change >= 0 else "🔴"
 
-        text += f"{i}. {name} ({symbol}) — {price} USDT {trend} {change:.2f}%\n💰"
+        text += f"{i}. {name} ({symbol}) — 💰 {price} USDT {trend} {change:.2f}%\n"
 
-    await message.answer(text)
+    sent_message = await message.answer(text)
+
+    # ⏳ ждём 10 секунд
+    await asyncio.sleep(10)
+
+    # 🧹 удаляем сообщение бота
+    await sent_message.delete()

@@ -35,10 +35,4 @@ async def handle_top(message: Message):
 
         text += f"{i}. {name} ({symbol}) — 💰 {price} USDT {trend} {change:.2f}%\n"
 
-    sent_message = await message.answer(text)
-
-    # ⏳ ждём 10 секунд
-    await asyncio.sleep(10)
-
-    # 🧹 удаляем сообщение бота
-    await sent_message.delete()
+        await message.answer(text)

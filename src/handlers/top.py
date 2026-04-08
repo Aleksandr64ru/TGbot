@@ -1,5 +1,4 @@
 import aiohttp
-import asyncio
 from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command
@@ -35,4 +34,5 @@ async def handle_top(message: Message):
 
         text += f"{i}. {name} ({symbol}) — 💰 {price} USDT {trend} {change:.2f}%\n"
 
-        await message.answer(text)
+    # отправляем сообщение один раз
+    await message.answer(text)

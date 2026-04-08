@@ -27,7 +27,8 @@ async def handle_top(message: Message):
         name = coin["name"]
         symbol = coin["symbol"].upper()
         price = round(coin["current_price"], 2)
+        image = coin["image"]
 
-        text += f"{i}. {name} ({symbol}) — {price} USDT\n"
+        text = f"{i}. {name} ({symbol})\n💰 {price} USDT"
 
-    await message.answer(text)
+        await message.answer_photo(photo=image, caption=text)

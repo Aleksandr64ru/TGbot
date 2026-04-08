@@ -27,8 +27,14 @@ async def handle_top(message: Message):
         name = coin["name"]
         symbol = coin["symbol"].upper()
         price = round(coin["current_price"], 2)
-        image = coin["image"]
+        change = coin.get("price_change_percentage_24h", 0)
+        
+        if change >= 0:
+            trend = "🟢"
+        else:
+            trend = "🔴"
 
-        text = f"{i}. {name} ({symbol})\n💰 {price} USDT"
 
-        await message.answer_photo(photo=image, caption=text)
+        text += f"{i}. {name} ({symbol}) — {price} USDT {trend} {change:.2f}%\n💰"
+
+    await message.answer(text)

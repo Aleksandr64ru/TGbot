@@ -10,6 +10,7 @@ async def handle_start(message: Message):
         "👋 Добро пожаловать в крипто-бота!\n\n"
         "📌 Доступные команды:\n\n"
         "/top — 📊 Топ-10 криптовалют\n"
+        "/news — 📊 Последние новости о крипте\n"
     )
 
     await message.answer(text)

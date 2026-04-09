@@ -8,6 +8,7 @@ from aiogram.types import Update
 # 👇 подключаем роутеры
 from handlers.start import router as start_router
 from handlers.top import router as top_router
+from handlers.news import router as news_router
 
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -18,6 +19,7 @@ dp = Dispatcher()
 # 👇 регистрируем все роутеры
 dp.include_router(start_router)
 dp.include_router(top_router)
+dp.include_router(news_router)
 
 
 async def handler(event: dict, context):

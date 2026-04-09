@@ -3,10 +3,10 @@ import json
 import asyncio
 
 from aiogram import Bot, Dispatcher
-from aiogram.types import Message, Update
-from aiogram.filters import Command
+from aiogram.types import Update
 
-# 👇 импорт роутера
+# 👇 подключаем роутеры
+from handlers.start import router as start_router
 from handlers.top import router as top_router
 
 
@@ -15,13 +15,9 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# 👇 подключаем роутер
+# 👇 регистрируем все роутеры
+dp.include_router(start_router)
 dp.include_router(top_router)
-
-
-@dp.message(Command("start"))
-async def handle_start(message: Message):
-    await message.answer("Hello!!")
 
 
 async def handler(event: dict, context):

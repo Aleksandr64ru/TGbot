@@ -9,6 +9,7 @@ from aiogram.types import Update
 from handlers.start import router as start_router
 from handlers.top import router as top_router
 from handlers.news import router as news_router
+from handlers.price import router as price_router
 
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -20,6 +21,7 @@ dp = Dispatcher()
 dp.include_router(start_router)
 dp.include_router(top_router)
 dp.include_router(news_router)
+dp.include_router(price_router)
 
 
 async def handler(event: dict, context):

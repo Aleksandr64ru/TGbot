@@ -31,7 +31,7 @@ async def handle_price(message: Message):
         parts = message.text.split()
 
         if len(parts) < 2:
-            await message.answer("❗ Используй: /price BTC")
+            await message.answer("❗ Используй: /price название монеты, пример: /price BTC")
             return
 
         query = parts[1].lower()
